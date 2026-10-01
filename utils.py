@@ -20,22 +20,18 @@ def buat_fitur(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
 
     # TODO 1 — Return harian: persentase perubahan harga penutupan.
-    #   Petunjuk: df["Close"].pct_change()
-    df["return"] = None  # <-- GANTI
+    df["return"] = df["Close"].pct_change()  
 
     # TODO 2 — Lag return untuk lag 1, 2, 3, 5, 10 hari.
-    #   Petunjuk: df["return"].shift(lag)
     for lag in [1, 2, 3, 5, 10]:
-        df[f"ret_lag{lag}"] = None  # <-- GANTI
+        df[f"ret_lag{lag}"] = df["return"].shift(lag)  
 
     # TODO 3 — Moving average RELATIF 5 & 20 hari (rasio terhadap harga sekarang).
-    #   Petunjuk: df["Close"].rolling(5).mean() / df["Close"] - 1
-    df["ma5"] = None   # <-- GANTI
-    df["ma20"] = None  # <-- GANTI
+    df["ma5"] = df["Close"].rolling(5).mean() / df["Close"] - 1   
+    df["ma20"] = df["Close"].rolling(20).mean() / df["Close"] - 1 
 
     # TODO 4 — Volatilitas 10 hari (standar deviasi dari return).
-    #   Petunjuk: df["return"].rolling(10).std()
-    df["vol10"] = None  # <-- GANTI
+    df["vol10"] = df["return"].rolling(10).std()  
 
     # --- RSI (14) sudah disediakan, TIDAK perlu diubah ---
     delta = df["Close"].diff()
@@ -51,8 +47,6 @@ def buat_target(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
 
     # TODO 5 — Target arah: 1 kalau return BESOK > 0, selain itu 0.
-    #   Petunjuk: (df["Close"].pct_change().shift(-1) > 0).astype(int)
-    #   Catatan: shift(-1) melihat ke depan, tapi ini BOLEH karena hanya untuk LABEL.
-    df["target"] = None  # <-- GANTI
+    df["target"] = df["Close"].pct_change().shift(-1) > 0).astype(int)  
 
     return df
