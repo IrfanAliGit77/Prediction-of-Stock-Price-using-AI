@@ -47,6 +47,6 @@ def buat_target(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
 
     # TODO 5 — Target arah: 1 kalau return BESOK > 0, selain itu 0.
-    df["target"] = df["Close"].pct_change().shift(-1) > 0).astype(int)  
+    df["target"] = (df["Close"].pct_change().shift(-1) > 0).astype(int)  
 
     return df
