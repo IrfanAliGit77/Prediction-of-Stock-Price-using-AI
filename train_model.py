@@ -32,20 +32,20 @@ def main() -> None:
     #     n = int(len(df) * 0.8)
     #     X_tr, X_te = X.iloc[:n], X.iloc[n:]
     #     y_tr, y_te = y.iloc[:n], y.iloc[n:]
-    n = 0            # <-- GANTI
-    X_tr, X_te = None, None  # <-- GANTI
-    y_tr, y_te = None, None  # <-- GANTI
+          n = int(len(df) * 0.8)
+          X_tr, X_te = X.iloc[:n], X.iloc[n:]
+          y_tr, y_te = y.iloc[:n], y.iloc[n:]
 
     # TODO 2 (Pertemuan 2) — Buat & latih model Random Forest.
     #   Petunjuk: RandomForestClassifier(n_estimators=200, random_state=0).fit(X_tr, y_tr)
-    model = None     # <-- GANTI
+    model = RandomForestClassifier(n_estimators=200, random_state=0).fit(X_tr, y_tr)     # <-- GANTI
 
     # TODO 3 (Pertemuan 2) — Hitung akurasi uji & BASELINE, lalu bandingkan.
     #   Petunjuk:
     #     acc = model.score(X_te, y_te)
     #     baseline = max(y_te.mean(), 1 - y_te.mean())
-    acc = 0.0        # <-- GANTI
-    baseline = 0.0   # <-- GANTI
+    acc = model.score(X_te, y_te)       # <-- GANTI
+    baseline = max(y_te.mean(), 1-y_te.mean())  # <-- GANTI
     print(f"Akurasi model  : {acc:.3f}")
     print(f"Baseline (naif): {baseline:.3f}")
     print("Model mengalahkan baseline?", acc > baseline)
