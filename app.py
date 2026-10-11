@@ -46,10 +46,10 @@ st.warning("⚠️ **Materi edukasi, bukan saran investasi.**")
 # TODO 1 (Pertemuan 4) — Muat model dari MODEL_PATH memakai joblib.load(...)
 #   Kalau file model belum ada, tampilkan pesan & st.stop().
 #   Petunjuk:
-#     if not MODEL_PATH.exists():
-#         st.error("Model belum ada. Jalankan dulu: python train_model.py"); st.stop()
-#     model = joblib.load(MODEL_PATH)
-model = None  # <-- GANTI
+    if not MODEL_PATH.exists():
+         st.error("Model belum ada. Jalankan dulu: python train_model.py"); st.stop()
+model = joblib.load(MODEL_PATH)
+
 
 ticker = st.text_input("Kode saham (contoh: BBCA.JK, TLKM.JK, AAPL)", value="BBCA.JK")
 df, sumber = ambil_data(ticker)
@@ -64,12 +64,12 @@ with tab1:
 
     # TODO 2 (Pertemuan 4) — Hitung fitur data terbaru & prediksi arahnya.
     #   Langkah:
-    #     feat = buat_fitur(df).dropna().reset_index(drop=True)
-    #     X_terbaru = feat[FITUR].iloc[[-1]]        # baris paling akhir
-    #     proba = model.predict_proba(X_terbaru)[0] # [prob turun, prob naik]
-    #     arah = "NAIK" if proba[1] >= 0.5 else "TURUN"
-    #     yakin = float(max(proba))
-    arah, yakin = "-", 0.0  # <-- GANTI
+         feat = buat_fitur(df).dropna().reset_index(drop=True)
+         X_terbaru = feat[FITUR].iloc[[-1]]        # baris paling akhir
+         proba = model.predict_proba(X_terbaru)[0] # [prob turun, prob naik]
+         arah = "NAIK" if proba[1] >= 0.5 else "TURUN"
+         yakin = float(max(proba))
+  
 
     c1, c2 = st.columns(2)
     if arah == "NAIK":
@@ -90,19 +90,19 @@ with tab2:
 
     # TODO 4 (Pertemuan 5) — Backtest sederhana.
     #   Langkah:
-    #     d = buat_target(buat_fitur(df)).dropna().reset_index(drop=True)
-    #     n = int(len(d) * 0.8)
-    #     proba = model.predict_proba(d[FITUR].iloc[n:])[:, 1]
-    #     signal = (proba >= 0.5).astype(int)
-    #     ret = d["Close"].pct_change().shift(-1).iloc[n:].values
-    #     biaya = 0.001
-    #     trades = np.abs(np.diff(np.concatenate([[0], signal])))
-    #     strat = signal * ret - trades * biaya
-    #     eq = pd.DataFrame({
-    #         "Beli & tahan": np.cumprod(1 + np.nan_to_num(ret)),
-    #         "Strategi model (-biaya)": np.cumprod(1 + np.nan_to_num(strat)),
-    #     })
-    #     st.line_chart(eq)
+        d = buat_target(buat_fitur(df)).dropna().reset_index(drop=True)
+        n = int(len(d) * 0.8)
+        proba = model.predict_proba(d[FITUR].iloc[n:])[:, 1]
+        signal = (proba >= 0.5).astype(int)
+        ret = d["Close"].pct_change().shift(-1).iloc[n:].values
+        biaya = 0.001
+        trades = np.abs(np.diff(np.concatenate([[0], signal])))
+        strat = signal * ret - trades * biaya
+        eq = pd.DataFrame({
+            "Beli & tahan": np.cumprod(1 + np.nan_to_num(ret)),
+            "Strategi model (-biaya)": np.cumprod(1 + np.nan_to_num(strat)),
+        })
+          st.line_chart(eq)
     st.info("Lengkapi TODO 4 (Pertemuan 5) untuk menampilkan backtest.")
 
 # ---------------- Tab 3: Tentang ----------------
