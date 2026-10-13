@@ -1,9 +1,6 @@
 """
 app.py — Aplikasi web prediksi ARAH harga saham.
 
->>> LENGKAPI bagian bertanda TODO. <<<
-Dikerjakan di PERTEMUAN 4 (tab Prediksi) dan PERTEMUAN 5 (tab Backtest).
-
 Jalankan lokal:  streamlit run app.py
 
 ⚠️ EDUKASI, BUKAN SARAN INVESTASI.
@@ -45,7 +42,6 @@ st.warning("⚠️ **Materi edukasi, bukan saran investasi.**")
 
 # TODO 1 (Pertemuan 4) — Muat model dari MODEL_PATH memakai joblib.load(...)
 #   Kalau file model belum ada, tampilkan pesan & st.stop().
-#   Petunjuk:
 if not MODEL_PATH.exists():
     st.error("Model belum ada. Jalankan dulu: python train_model.py"); st.stop()
 model = joblib.load(MODEL_PATH)
@@ -81,8 +77,7 @@ with tab1:
     c2.metric("Keyakinan model", f"{yakin*100:.1f}%")
 
     # TODO 3 (Pertemuan 4) — Tampilkan grafik harga 120 hari terakhir.
-    #   Petunjuk: st.line_chart(df.set_index("Date")["Close"].tail(120))
-    pass  # <-- GANTI
+   st.line_chart(df.set_index("Date")["Close"].tail(120))
 
 # ---------------- Tab 2: Backtest ----------------
 with tab2:
