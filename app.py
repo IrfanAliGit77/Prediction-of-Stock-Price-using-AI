@@ -77,7 +77,7 @@ with tab1:
     c2.metric("Keyakinan model", f"{yakin*100:.1f}%")
 
     # TODO 3 (Pertemuan 4) — Tampilkan grafik harga 120 hari terakhir.
-   st.line_chart(df.set_index("Date")["Close"].tail(120))
+    st.line_chart(df.set_index("Date")["Close"].tail(120))
 
 # ---------------- Tab 2: Backtest ----------------
 with tab2:
