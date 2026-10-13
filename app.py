@@ -97,7 +97,7 @@ with tab2:
         "Beli & tahan": np.cumprod(1 + np.nan_to_num(ret)),
         "Strategi model (-biaya)": np.cumprod(1 + np.nan_to_num(strat)),
         })
-          st.line_chart(eq)
+    st.line_chart(eq)
     st.info("Lengkapi TODO 4 (Pertemuan 5) untuk menampilkan backtest.")
 
 # ---------------- Tab 3: Tentang ----------------
