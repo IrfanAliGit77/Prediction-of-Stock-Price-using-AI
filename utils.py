@@ -1,9 +1,6 @@
 """
 utils.py — Rekayasa fitur & target.
 
->>> LENGKAPI semua bagian bertanda TODO. <<<
-Bagian ini dikerjakan di PERTEMUAN 1 (lihat Panduan Build).
-
 fungsi di sini dipakai OLEH train_model.py DAN app.py,
 jadi perhitungan fitur selalu konsisten antara saat melatih & saat memprediksi.
 """
