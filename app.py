@@ -85,17 +85,17 @@ with tab2:
 
     # TODO 4 (Pertemuan 5) — Backtest sederhana.
     #   Langkah:
-        d = buat_target(buat_fitur(df)).dropna().reset_index(drop=True)
-        n = int(len(d) * 0.8)
-        proba = model.predict_proba(d[FITUR].iloc[n:])[:, 1]
-        signal = (proba >= 0.5).astype(int)
-        ret = d["Close"].pct_change().shift(-1).iloc[n:].values
-        biaya = 0.001
-        trades = np.abs(np.diff(np.concatenate([[0], signal])))
-        strat = signal * ret - trades * biaya
-        eq = pd.DataFrame({
-            "Beli & tahan": np.cumprod(1 + np.nan_to_num(ret)),
-            "Strategi model (-biaya)": np.cumprod(1 + np.nan_to_num(strat)),
+    d = buat_target(buat_fitur(df)).dropna().reset_index(drop=True)
+    n = int(len(d) * 0.8)
+    proba = model.predict_proba(d[FITUR].iloc[n:])[:, 1]
+    signal = (proba >= 0.5).astype(int)
+    ret = d["Close"].pct_change().shift(-1).iloc[n:].values
+    biaya = 0.001
+    trades = np.abs(np.diff(np.concatenate([[0], signal])))
+    strat = signal * ret - trades * biaya
+    eq = pd.DataFrame({
+        "Beli & tahan": np.cumprod(1 + np.nan_to_num(ret)),
+        "Strategi model (-biaya)": np.cumprod(1 + np.nan_to_num(strat)),
         })
           st.line_chart(eq)
     st.info("Lengkapi TODO 4 (Pertemuan 5) untuk menampilkan backtest.")
