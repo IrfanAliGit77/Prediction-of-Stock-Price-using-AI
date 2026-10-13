@@ -4,13 +4,13 @@ utils.py — Rekayasa fitur & target.
 >>> LENGKAPI semua bagian bertanda TODO. <<<
 Bagian ini dikerjakan di PERTEMUAN 1 (lihat Panduan Build).
 
-Kenapa file ini penting: fungsi di sini dipakai OLEH train_model.py DAN app.py,
+fungsi di sini dipakai OLEH train_model.py DAN app.py,
 jadi perhitungan fitur selalu konsisten antara saat melatih & saat memprediksi.
 """
 import numpy as np
 import pandas as pd
 
-# Daftar fitur yang dipakai model (SUDAH disiapkan — jangan diubah urutannya).
+# Daftar fitur yang dipakai model 
 FITUR = ["ret_lag1", "ret_lag2", "ret_lag3", "ret_lag5", "ret_lag10",
          "ma5", "ma20", "vol10", "rsi"]
 
