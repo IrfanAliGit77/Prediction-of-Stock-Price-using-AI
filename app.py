@@ -60,11 +60,11 @@ with tab1:
 
     # TODO 2 (Pertemuan 4) — Hitung fitur data terbaru & prediksi arahnya.
     #   Langkah:
-         feat = buat_fitur(df).dropna().reset_index(drop=True)
-         X_terbaru = feat[FITUR].iloc[[-1]]        # baris paling akhir
-         proba = model.predict_proba(X_terbaru)[0] # [prob turun, prob naik]
-         arah = "NAIK" if proba[1] >= 0.5 else "TURUN"
-         yakin = float(max(proba))
+    feat = buat_fitur(df).dropna().reset_index(drop=True)
+    X_terbaru = feat[FITUR].iloc[[-1]]        # baris paling akhir
+    proba = model.predict_proba(X_terbaru)[0] # [prob turun, prob naik]
+    arah = "NAIK" if proba[1] >= 0.5 else "TURUN"
+    yakin = float(max(proba))
   
 
     c1, c2 = st.columns(2)
